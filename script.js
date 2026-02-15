@@ -4,6 +4,7 @@ const list = document.getElementById("todo-list");
 const themeToggle = document.getElementById("theme-toggle");
 
 const themeStorageKey = "todo-theme";
+const deleteAnimationDuration = 300; // milliseconds, matches CSS fadeOut animation
 
 const applyTheme = (theme) => {
   document.documentElement.setAttribute("data-theme", theme);
@@ -66,8 +67,12 @@ const addTodo = (text) => {
   deleteButton.type = "button";
   deleteButton.textContent = "Delete";
   deleteButton.addEventListener("click", () => {
-    list.removeChild(item);
-    renderEmptyState();
+    // Add fade-out animation before removal
+    item.style.animation = `fadeOut ${deleteAnimationDuration}ms ease`;
+    setTimeout(() => {
+      list.removeChild(item);
+      renderEmptyState();
+    }, deleteAnimationDuration);
   });
 
   item.appendChild(toggle);
