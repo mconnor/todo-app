@@ -110,7 +110,7 @@ body {
   font-family: inherit;
   background: var(--card);
   color: var(--ink);
-  transition: all 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 :root[data-theme="dark"] #todo-input,
@@ -144,7 +144,7 @@ button {
   font-size: 1.05rem;
   font-family: inherit;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background 0.2s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: var(--shadow-sm);
 }
 
@@ -260,7 +260,7 @@ button:active {
   padding: 0.5rem 1rem;
   font-size: 0.9rem;
   font-weight: 600;
-  transition: all 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .todo-item button:hover {
