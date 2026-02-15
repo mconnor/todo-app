@@ -22,6 +22,14 @@ const addTodo = (text) => {
   const item = document.createElement("li");
   item.className = "todo-item";
 
+  const toggle = document.createElement("input");
+  toggle.type = "checkbox";
+  toggle.className = "todo-toggle";
+  toggle.setAttribute("aria-label", "Mark todo as completed");
+  toggle.addEventListener("change", () => {
+    item.classList.toggle("completed", toggle.checked);
+  });
+
   const label = document.createElement("span");
   label.textContent = text;
 
@@ -33,6 +41,7 @@ const addTodo = (text) => {
     renderEmptyState();
   });
 
+  item.appendChild(toggle);
   item.appendChild(label);
   item.appendChild(deleteButton);
   list.appendChild(item);
