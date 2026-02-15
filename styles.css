@@ -52,7 +52,7 @@ body {
   background: radial-gradient(circle at top left, var(--bg-grad-1), transparent 60%),
     radial-gradient(circle at bottom right, var(--bg-grad-2), transparent 60%), var(--bg);
   color: var(--ink);
-  transition: background 0.3s ease, color 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 .app {
@@ -62,7 +62,7 @@ body {
   border-radius: 24px;
   box-shadow: var(--shadow);
   border: 1px solid var(--border);
-  transition: all 0.3s ease;
+  transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 .app__header {
@@ -78,6 +78,7 @@ body {
   font-size: 2.75rem;
   font-weight: 800;
   letter-spacing: -0.04em;
+  color: var(--accent);
   background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -166,7 +167,7 @@ button:active {
   border-radius: 999px;
   box-shadow: none;
   font-size: 0.95rem;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
 .theme-toggle:hover {
@@ -209,7 +210,7 @@ button:active {
   border-radius: 12px;
   border: 2px solid var(--border);
   animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
 }
 
 .todo-item:hover {
@@ -280,7 +281,6 @@ button:active {
   border: 2px dashed var(--border);
   border-radius: 12px;
   font-size: 1.05rem;
-  transition: all 0.3s ease;
 }
 
 .sr-only {
