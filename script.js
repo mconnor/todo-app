@@ -1,6 +1,35 @@
 const form = document.getElementById("todo-form");
 const input = document.getElementById("todo-input");
 const list = document.getElementById("todo-list");
+const themeToggle = document.getElementById("theme-toggle");
+
+const themeStorageKey = "todo-theme";
+
+const applyTheme = (theme) => {
+  document.documentElement.setAttribute("data-theme", theme);
+  themeToggle.textContent = theme === "dark" ? "Light mode" : "Dark mode";
+  themeToggle.setAttribute("aria-pressed", theme === "dark" ? "true" : "false");
+};
+
+const getPreferredTheme = () => {
+  const storedTheme = localStorage.getItem(themeStorageKey);
+  if (storedTheme === "dark" || storedTheme === "light") {
+    return storedTheme;
+  }
+
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+let currentTheme = getPreferredTheme();
+applyTheme(currentTheme);
+
+themeToggle.addEventListener("click", () => {
+  currentTheme = currentTheme === "dark" ? "light" : "dark";
+  localStorage.setItem(themeStorageKey, currentTheme);
+  applyTheme(currentTheme);
+});
 
 const emptyState = document.createElement("li");
 emptyState.className = "empty-state";

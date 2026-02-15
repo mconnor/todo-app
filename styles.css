@@ -2,12 +2,28 @@
 
 :root {
   --bg: #f6f1e8;
+  --bg-grad-1: #ffe9c7;
+  --bg-grad-2: #ffd2b1;
   --card: #fff4d6;
   --ink: #1f1a16;
   --accent: #f46c2b;
   --accent-dark: #c84c16;
   --muted: #7a6a5f;
   --shadow: 0 20px 40px rgba(31, 26, 22, 0.15);
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --bg: #121010;
+  --bg-grad-1: #1f1513;
+  --bg-grad-2: #2a1b15;
+  --card: #1e1916;
+  --ink: #f3e9dd;
+  --accent: #ff8a4d;
+  --accent-dark: #ffb07a;
+  --muted: #c7b7a7;
+  --shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
+  color-scheme: dark;
 }
 
 * {
@@ -21,8 +37,8 @@ body {
   align-items: center;
   justify-content: center;
   font-family: "Space Grotesk", "Helvetica Neue", sans-serif;
-  background: radial-gradient(circle at top left, #ffe9c7, transparent 55%),
-    radial-gradient(circle at bottom right, #ffd2b1, transparent 55%), var(--bg);
+  background: radial-gradient(circle at top left, var(--bg-grad-1), transparent 55%),
+    radial-gradient(circle at bottom right, var(--bg-grad-2), transparent 55%), var(--bg);
   color: var(--ink);
 }
 
@@ -35,6 +51,13 @@ body {
   border: 1px solid rgba(31, 26, 22, 0.1);
 }
 
+.app__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
 .app__header h1 {
   margin: 0;
   font-size: 2.4rem;
@@ -45,6 +68,7 @@ body {
   margin: 0.5rem 0 0;
   color: var(--muted);
 }
+
 
 .app__controls {
   margin-top: 2rem;
@@ -62,6 +86,16 @@ body {
   padding: 0.85rem 1rem;
   font-size: 1rem;
   background: #fffdf8;
+}
+
+:root[data-theme="dark"] #todo-input,
+:root[data-theme="dark"] .todo-item {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(243, 233, 221, 0.12);
+}
+
+:root[data-theme="dark"] .empty-state {
+  border-color: rgba(243, 233, 221, 0.15);
 }
 
 #todo-input:focus {
@@ -85,6 +119,24 @@ button {
 button:hover {
   transform: translateY(-1px);
   box-shadow: 0 8px 18px rgba(244, 108, 43, 0.3);
+}
+
+.theme-toggle {
+  border: 2px solid rgba(31, 26, 22, 0.2);
+  background: transparent;
+  color: inherit;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  box-shadow: none;
+}
+
+.theme-toggle:hover {
+  transform: translateY(-1px);
+  box-shadow: none;
+}
+
+:root[data-theme="dark"] .theme-toggle {
+  border-color: rgba(243, 233, 221, 0.2);
 }
 
 .app__list {
@@ -173,6 +225,11 @@ button:hover {
 @media (max-width: 540px) {
   .app {
     padding: 2rem 1.5rem;
+  }
+
+  .app__header {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   #todo-form {
