@@ -57,6 +57,11 @@ const addTodo = (text) => {
   toggle.setAttribute("aria-label", "Mark todo as completed");
   toggle.addEventListener("change", () => {
     item.classList.toggle("completed", toggle.checked);
+    // Add a subtle animation feedback
+    item.style.animation = 'none';
+    setTimeout(() => {
+      item.style.animation = '';
+    }, 10);
   });
 
   const label = document.createElement("span");
@@ -66,8 +71,14 @@ const addTodo = (text) => {
   deleteButton.type = "button";
   deleteButton.textContent = "Delete";
   deleteButton.addEventListener("click", () => {
-    list.removeChild(item);
-    renderEmptyState();
+    // Add fade-out animation before removal
+    item.style.animation = 'fadeOut 0.3s ease';
+    item.style.opacity = '0';
+    item.style.transform = 'translateX(-10px)';
+    setTimeout(() => {
+      list.removeChild(item);
+      renderEmptyState();
+    }, 300);
   });
 
   item.appendChild(toggle);
